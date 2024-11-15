@@ -3,7 +3,8 @@ package com.aadi.creditcardutility.service.impl;
 import com.aadi.creditcardutility.pojo.StatementFilePOJO;
 import com.aadi.creditcardutility.service.StatementFactory;
 import com.aadi.creditcardutility.service.StatementService;
-import com.aadi.creditcardutility.util.Constants;
+import com.aadi.creditcardutility.util.Constant;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,18 +17,18 @@ public class StatementFactoryImpl implements StatementFactory {
     private AirtelAxisStatementServiceImpl airtelAxisStatementService;
 
     @Override
-    public StatementService getStatementService(StatementFilePOJO statement) throws ClassNotFoundException {
+    public StatementService getStatementService(StatementFilePOJO statement) throws EntityNotFoundException {
         switch (statement.getCreditCardName()) {
-            case Constants.CREDIT_CARD_AMAZON_PAY_ICICI -> {
+            case Constant.CREDIT_CARD_AMAZON_PAY_ICICI -> {
                 return amazonPayICICIStatementService;
             }
-            case Constants.CREDIT_CARD_FLIPKART_AXIS -> {
+            case Constant.CREDIT_CARD_FLIPKART_AXIS -> {
                 return flipkartAxisStatementService;
             }
-            case Constants.CREDIT_CARD_AIRTEL_AXIS -> {
+            case Constant.CREDIT_CARD_AIRTEL_AXIS -> {
                 return airtelAxisStatementService;
             }
-            default -> throw new ClassNotFoundException();
+            default -> throw new EntityNotFoundException("Invalid credit card name: " + statement.getCreditCardName());
         }
     }
 }

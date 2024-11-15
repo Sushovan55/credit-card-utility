@@ -41,25 +41,21 @@ public class TransactionServiceImpl implements TransactionService {
     public List<TransactionDTO> createTransactionByStatement(StatementFilePOJO statement) {
         List<TransactionDTO> persistedTransactionDTOs = new ArrayList<>();
 
-        try {
-            StatementService statementService = statementFactory.getStatementService(statement);
-            List<TransactionDTO> transactionDTOs =
-                    statementService.convertStatementToTransactions(statement);
+        StatementService statementService = statementFactory.getStatementService(statement);
+        List<TransactionDTO> transactionDTOs =
+                statementService.convertStatementToTransactions(statement);
 
-            List<Transaction> transactions = transactionDTOs.stream()
-                            .map(TransactionMapper::toTransaction)
-                            .toList();
+        List<Transaction> transactions = transactionDTOs.stream()
+                        .map(TransactionMapper::toTransaction)
+                        .toList();
 
             /*transactionDTOs.forEach(System.out::println);
             System.out.println(transactionDTOs.stream().mapToDouble(TransactionDTO::getAcquiredReward).sum());*/
 
-            List<Transaction> persistedTransactions = transactionRepository.saveAll(transactions);
-            persistedTransactionDTOs =
-                    persistedTransactions.stream().map(TransactionMapper::toTransactionDTO).toList();
+        List<Transaction> persistedTransactions = transactionRepository.saveAll(transactions);
+        persistedTransactionDTOs =
+                persistedTransactions.stream().map(TransactionMapper::toTransactionDTO).toList();
 
-        } catch (ClassNotFoundException cnfe) {
-            cnfe.printStackTrace();
-        }
         return persistedTransactionDTOs;
     }
 

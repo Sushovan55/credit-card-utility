@@ -2,7 +2,7 @@ package com.aadi.creditcardutility.util;
 
 import java.util.List;
 
-public class Constants {
+public class Constant {
     public static final String COMMA = ",";
     public static final String EMPTY_STRING = "";
     public static final String HYPHEN = "-";

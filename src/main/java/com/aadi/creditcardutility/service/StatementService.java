@@ -11,5 +11,6 @@ import java.util.regex.Matcher;
 public interface StatementService {
     List<TransactionDTO> convertStatementToTransactions(StatementFilePOJO statement);
     CreditType populateCreditType(String value);
-    TransactionDTO prepareTransactionDTOFromStatementLine(Matcher matcher, CreditCardDTO cardDTO);
+    TransactionDTO prepareTransactionDTOFromStatementLine(CreditCardDTO cardDTO, String line);
+    void applyMaxLimitOnReward(List<TransactionDTO> transactionDTOs);
 }
