@@ -9,4 +9,6 @@ public interface CreditCardService {
     List<CreditCardDTO> getAllCreditCards();
 
     List<CreditCardDTO> getAllCreditCardsByBank(Integer bankId);
+
+    CreditCardDTO getCreditCardByDisplayName(String displayName);
 }

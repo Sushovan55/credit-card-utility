@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CreditCardRepository extends JpaRepository<CreditCard, Integer> {
-    List<CreditCard> findByBankId(Integer bankId);
+
+    Optional<List<CreditCard>> findByBankId(Integer bankId);
+
     Optional<List<CreditCard>> findByDisplayName(String displayName);
 }

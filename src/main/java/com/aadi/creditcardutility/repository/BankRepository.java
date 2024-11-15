@@ -8,5 +8,6 @@ import java.util.Optional;
 
 
 public interface BankRepository extends JpaRepository<Bank, Integer> {
+
     Optional<List<Bank>> findByDisplayName(String displayName);
 }

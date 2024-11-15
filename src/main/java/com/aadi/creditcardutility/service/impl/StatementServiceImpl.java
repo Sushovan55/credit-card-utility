@@ -31,7 +31,9 @@ public class StatementServiceImpl implements StatementService {
         //Get the card to attach with transactions
         List<CreditCard> cards =
                 cardRepository.findByDisplayName(statement.getCreditCardName())
-                        .orElseThrow(EntityNotFoundException::new);
+                        .orElseThrow(() ->
+                                new EntityNotFoundException("CreditCard not found with display name: "
+                                        + statement.getCreditCardName()));
         CreditCardDTO cardDTO = CreditCardMapper.toCreditCardDTO(cards.get(0));
 
         try {
