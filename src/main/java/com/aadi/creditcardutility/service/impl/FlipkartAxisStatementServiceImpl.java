@@ -4,14 +4,12 @@ import com.aadi.creditcardutility.dto.CreditCardDTO;
 import com.aadi.creditcardutility.dto.TransactionDTO;
 import com.aadi.creditcardutility.enums.CreditType;
 import com.aadi.creditcardutility.enums.TransactionType;
-import com.aadi.creditcardutility.pojo.StatementFilePOJO;
 import com.aadi.creditcardutility.repository.CreditCardRepository;
 import com.aadi.creditcardutility.util.Constant;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,11 +18,6 @@ public class FlipkartAxisStatementServiceImpl extends StatementServiceImpl {
 
     public FlipkartAxisStatementServiceImpl(CreditCardRepository cardRepository) {
         super(cardRepository);
-    }
-
-    @Override
-    public List<TransactionDTO> convertStatementToTransactions(StatementFilePOJO statement) {
-        return super.convertStatementToTransactions(statement);
     }
 
     @Override
